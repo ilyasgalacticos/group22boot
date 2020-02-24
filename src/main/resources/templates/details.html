@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" th:href = "@{'/css/bootstrap.min.css'}">
+    </head>
+    <body>
+        <div class="container mt-3">
+            <form th:action = "@{'/saveitem'}" method="post">
+                <input type="hidden" th:value = "${item.id}" name="id">
+                <div class="form-group">
+                    <label>NAME : </label>
+                    <input type="text" name="name" class="form-control" th:value = "${item.name}">
+                </div>
+                <div class="form-group">
+                    <label>PRICE : </label>
+                    <input type="number" name="price" class="form-control" th:value = "${item.price}">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success">SAVE ITEM</button>
+                </div>
+            </form>
+            <form th:action = "@{'/delete'}" method="post">
+                <input type="hidden" th:value = "${item.id}" name="id">
+                <button class="btn btn-danger">DELETE ITEM</button>
+            </form>
+        </div>
+    </body>
+</html>
