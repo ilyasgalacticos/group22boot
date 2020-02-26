@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" th:href = "@{'/css/bootstrap.min.css'}">
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+                <a class="navbar-brand" th:href="@{'/'}">Shop Item</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{'/'}">All Items</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container mt-3 mb-5" layout:fragment="theContent">
+
+        </div>
+        <div class="container mb-5" style="background-color: #0c5460; ">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label style="color: white; font-weight: bold;">
+                        Copyright 2020 All rights reserved
+                    </label>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

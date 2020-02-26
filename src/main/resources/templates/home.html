@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layouts/securityMain.html">
+    <div layout:fragment="theContent">
+        <div class="row">
+            <div class="col-sm-8 offset-2">
+                <div sec:authorize="isAuthenticated()">
+                    <h1>
+                        Welcome <span th:text = "${user.fullName}"></span>
+                    </h1>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            NAME
+                        </th>
+                        <th>
+                            PRICE
+                        </th>
+                        <th>
+                            DETAILS
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "item: ${items}">
+                        <td th:text = "${item.id}"></td>
+                        <td th:text = "${item.name}"></td>
+                        <td th:text = "${item.price}"></td>
+                        <td><a th:href="@{'/details/' + ${item.id}}" class="btn btn-success btn-sm">DETAILS</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</html>
