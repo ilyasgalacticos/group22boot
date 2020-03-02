@@ -13,27 +13,35 @@
                 </div>
                 <table class="table">
                     <thead>
-                    <tr>
-                        <th>
-                            ID
-                        </th>
-                        <th th:text = "#{label.name}">
-                        </th>
-                        <th th:text = "#{label.price}">
-                        </th>
-                        <th>
-                            DETAILS
-                        </th>
-                    </tr>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th th:text = "#{label.name}">
+                            </th>
+                            <th th:text = "#{label.price}">
+                            </th>
+                            <th>
+                                DETAILS
+                            </th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr th:each = "item: ${items}">
-                        <td th:text = "${item.id}"></td>
-                        <td th:text = "${item.name}"></td>
-                        <td th:text = "${item.price}"></td>
-                        <td><a th:href="@{'/details/' + ${item.id}}" class="btn btn-success btn-sm">DETAILS</a></td>
-                    </tr>
+                        <tr th:each = "item: ${items}">
+                            <td th:text = "${item.id}"></td>
+                            <td th:text = "${item.name}"></td>
+                            <td th:text = "${item.price}"></td>
+                            <td><a th:href="@{'/details/' + ${item.id}}" class="btn btn-success btn-sm">DETAILS</a></td>
+                        </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <a class="btn btn-info btn-sm ml-1" th:each = "i : ${#numbers.sequence(1, tabs)}" th:text = "${i}" th:href = "@{'/?page=' + ${i}}">
+                                </a>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

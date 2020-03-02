@@ -5,6 +5,8 @@ import kz.bitlab.springboot.group22.entites.users.Users;
 import kz.bitlab.springboot.group22.repositories.ItemsRepository;
 import kz.bitlab.springboot.group22.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,12 +31,24 @@ public class SecurityController {
     private ItemsRepository itemsRepository;
 
     @GetMapping(path = "/")
-    public String index(Model model){
+    public String index(Model model, @RequestParam(name = "page", defaultValue = "1", required = false) int page){
 
         model.addAttribute("user", getUserData());
-        List<Items> items = itemsRepository.findAll();
+
+        long size = itemsRepository.count();
+        long tabSize = 5;
+        long tabs = (size+tabSize-1)/tabSize;
+
+        if(page<0){
+            page = 1;
+        }
+
+        Pageable pageable = PageRequest.of(page-1, (int)tabSize);
+
+        List<Items> items = itemsRepository.findAllByIdNotNullOrderByPriceDesc(pageable);
 
         model.addAttribute("items", items);
+        model.addAttribute("tabs", tabs);
 
         return "home";
     }
