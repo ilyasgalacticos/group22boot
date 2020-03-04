@@ -7,6 +7,7 @@ import kz.bitlab.springboot.group22.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -119,6 +121,13 @@ public class SecurityController {
             user = userRepository.findByEmail(ud.getUsername());
         }
         return user;
+    }
+
+    @PostMapping(path = "/createticket")
+    public String createTicket(@RequestParam(name = "flightDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
+        System.out.println(date);
+        System.out.println(new Date());
+        return "redirect:/";
     }
 
 

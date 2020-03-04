@@ -43,6 +43,11 @@
                         </tr>
                     </tfoot>
                 </table>
+
+                <form th:action = "@{'/createticket'}" method="post">
+                    DATE : <input type="date" name="flightDate">
+                    <button>SEND</button>
+                </form>
             </div>
         </div>
     </div>
